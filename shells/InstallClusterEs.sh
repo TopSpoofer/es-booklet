@@ -69,6 +69,8 @@ function install_kibana()
 function install_cerebro()
 {
         echo -e "现在安装cerebro ......"
+        # 如果你无法从github下载文件，那么可以访问下面的链接手动（备份地址无法用wget下载）下载，然后再进行解压。
+        # 备份地址：https://gitee.com/dgl/es-booklet/raw/master/resources/cerebro-0.9.4.tgz
         wget https://github.com/lmenezes/cerebro/releases/download/v0.9.4/cerebro-0.9.4.tgz
         tar xvf cerebro-0.9.4.tgz
         mv cerebro-0.9.4 cerebro
