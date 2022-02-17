@@ -1,3 +1,5 @@
+
+```
 DELETE books
 
 PUT books
@@ -60,3 +62,4 @@ PUT books/_doc/3
   "price": 12.9,
   "date": "2010-06-01"
 }
+```
