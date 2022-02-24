@@ -70,6 +70,8 @@ services:
       - "9000:9000"
     command:
       - -Dhosts.0.host=http://elasticsearch1:9200
+    depends_on:
+      - es_node1
     networks:
       - es7_net
 
@@ -77,7 +79,7 @@ services:
     image: docker.elastic.co/kibana/kibana:7.13.0
     container_name: kibana_7.13
     environment:
-      - ELASTICSEARCH_HOSTS=http://es_node1:9200
+      - ELASTICSEARCH_HOSTS=["http://es_node1:9200"]
       - I18N_LOCALE=zh-CN
     ports:
       - "5601:5601"
