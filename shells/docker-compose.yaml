@@ -1,0 +1,100 @@
+version: '2.2'
+services:
+  elasticsearch1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: es_node1
+    environment:
+      - cluster.name=my_app
+      - node.name=es_node1
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms128m -Xmx128m"
+      - discovery.seed_hosts=es_node1,es_node2,es_node3
+      - cluster.initial_master_nodes=es_node1,es_node2,es_node3
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es7_data1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - es7_net
+
+  elasticsearch2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: es_node2
+    environment:
+      - cluster.name=my_app
+      - node.name=es_node2
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms128m -Xmx128m"
+      - discovery.seed_hosts=es_node1,es_node2,es_node3
+      - cluster.initial_master_nodes=es_node1,es_node2,es_node3
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es7_data2:/usr/share/elasticsearch/data
+    ports:
+      - 9202:9200
+    networks:
+      - es7_net
+
+  elasticsearch3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.0
+    container_name: es_node3
+    environment:
+      - cluster.name=my_app
+      - node.name=es_node3
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms128m -Xmx128m"
+      - discovery.seed_hosts=es_node1,es_node2,es_node3
+      - cluster.initial_master_nodes=es_node1,es_node2,es_node3
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es7_data3:/usr/share/elasticsearch/data
+    ports:
+      - 9203:9200
+    networks:
+      - es7_net
+
+  cerebro:
+    image: lmenezes/cerebro:0.9.4
+    container_name: cerebro_0.94
+    ports:
+      - "9000:9000"
+    command:
+      - -Dhosts.0.host=http://elasticsearch1:9200
+    networks:
+      - es7_net
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.13.0
+    container_name: kibana_7.13
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es_node1:9200
+      - I18N_LOCALE=zh-CN
+    ports:
+      - "5601:5601"
+    depends_on:
+      - es_node1
+    networks:
+      - es7_net
+
+volumes:
+  es7_data1:
+    driver: local
+  es7_data2:
+    driver: local
+  es7_data3:
+    driver: local
+
+
+networks:
+  es7_net:
+    driver: bridge
