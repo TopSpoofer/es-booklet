@@ -113,7 +113,7 @@ docker-compose down -v
 # 安装 Elasticsearch、Kibana、cerebro
 好了在准备后一切之后，我们可以准备安装 Elasticsearch 7.13.0、Kibana 7.13.0、cerebro 0.94。
 
-点击这里下载 docker-compose.yaml。将文件保存为 docker-compose.yaml 后，进入这个文件的目录，执行以下指令即可：
+点击[这里](https://gitee.com/dgl/es-booklet/blob/master/shells/docker-compose.yaml)下载 docker-compose.yaml。将文件保存为 docker-compose.yaml 后，进入这个文件的目录，执行以下指令即可：
 
 ```
 docker-compose up
@@ -159,3 +159,16 @@ kibana_7.13   | {"message":"Unable to retrieve version information from Elastics
 
 ### 2、ES 启动就闪退
 也是没有详细的日志，同样猜测虚拟机配置太低，最后把虚拟机硬件配置调整到 4G，4C，然后 ES 的启动内存配为 128m，问题被解决。
+
+
+# 其他学习资料
+[创建自己的 ES Docker Image](https://www.elastic.co/cn/blog/how-to-make-a-dockerfile-for-elasticsearch)
+
+[在 docker image 中安装 Elasticsearch 插件](https://www.elastic.co/cn/blog/elasticsearch-docker-plugin-management)
+
+[一个开源的 ELK docker-compose 配置](https://github.com/deviantony/docker-elk)
+
+[docker 中安装 ES 7.13](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/docker.html)
+
+[docker 中安装 Kibana 7.13](https://www.elastic.co/guide/en/kibana/7.13/docker.html)
+
