@@ -12,6 +12,6 @@
 请访问[文档](https://gitee.com/dgl/es-booklet/blob/master/%E5%9C%A8Docker%E4%B8%AD%E5%AE%89%E8%A3%85ES%E3%80%81Kibana%E3%80%81cerebro.md)
 
 ### 课程简介
-你可以从这里进入[课程链接](https://juejin.cn/book/7054754754529853475)进行订阅和学习
+你可以从这里进入[课程](https://juejin.cn/book/7054754754529853475)进行订阅和学习
 
 ![简介](images/WX20220224-174733.png)
