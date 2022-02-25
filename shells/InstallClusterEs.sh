@@ -71,6 +71,10 @@ function install_cerebro()
         echo -e "现在安装cerebro ......"
         # 如果你无法从github下载文件，那么可以访问下面的链接手动（备份地址无法用wget下载）下载，然后再进行解压。
         # 备份地址：https://gitee.com/dgl/es-booklet/raw/master/resources/cerebro-0.9.4.tgz
+
+        # 如果已经从备份地址下载到本地了，并且放到 ES 目录下，
+        # 就直接把下面这句 wget https://github.com/lmenezes/... 注释掉, 
+        # 并且 注释掉 check_before_install 函数的调用
         wget https://github.com/lmenezes/cerebro/releases/download/v0.9.4/cerebro-0.9.4.tgz
         tar xvf cerebro-0.9.4.tgz
         mv cerebro-0.9.4 cerebro
@@ -145,20 +149,24 @@ function set_system_config()
 
 function kill_all_app_by_name()
 {
-        pid=`ps -ef | grep $1 | grep -v "grep" | awk -F" " '{print $2}'`
-        for i in $pid; do
-                kill -9 $i
-        done
+    pid=`ps -ef | grep $1 | grep -v "grep" | awk -F" " '{print $2}'`
+    for i in $pid; do
+            kill -9 $i
+    done
+}
+
+function check_before_install() {
+    rm ES -rf
+    mkdir ES
+    cd ES
 }
 
 kill_all_app_by_name 'kibana'
 kill_all_app_by_name 'cerebro'
 kill_all_app_by_name 'Elasticsearch'
 
-rm ES -rf
-mkdir ES
-cd ES
-
+# 如果 cerebro 安装包下载到本地安装的话注释 check_before_install 函数的调用
+check_before_install
 install_ES $es_node_amount
 install_kibana
 install_cerebro
