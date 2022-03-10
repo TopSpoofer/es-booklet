@@ -160,6 +160,31 @@ kibana_7.13   | {"message":"Unable to retrieve version information from Elastics
 ### 2、ES 启动就闪退
 也是没有详细的日志，同样猜测虚拟机配置太低，最后把虚拟机硬件配置调整到 4G，4C，然后 ES 的启动内存配为 128m，问题被解决。
 
+### 3、linux 上会触发 es bootstrap checks 而失败
+![bootstrap_check_fail](images/docker_install_es/bootstrap_check_fail.png)
+如果你是 linux 上运行这个 docker-compose 文件可能出现如上图的错误，这是因为触发了 bootstrap checks。为什么会触发 bootstrap checks 呢？因为启动时绑定的地址不是回环地址，es 会认为是需要运行在 production 模式。
+
+这个问题可以修改linux的系统设置：
+在 /etc/security/limits.conf 加入：
+
+```bash
+speng soft nofile 10240
+speng hard nofile 10240
+
+* soft nofile 65536
+* hard nofile 65536
+```
+
+在 /etc/sysctl.conf 加入：
+
+```bash
+vm.max_map_count=262144
+```
+
+然后执行：
+```bash
+sysctl -p
+```
 
 # 其他学习资料
 [创建自己的 ES Docker Image](https://www.elastic.co/cn/blog/how-to-make-a-dockerfile-for-elasticsearch)
