@@ -165,6 +165,7 @@ kibana_7.13   | {"message":"Unable to retrieve version information from Elastics
 如果你是 linux 上运行这个 docker-compose 文件可能出现如上图的错误，这是因为触发了 bootstrap checks。为什么会触发 bootstrap checks 呢？因为启动时绑定的地址不是回环地址，es 会认为是需要运行在 production 模式。
 
 这个问题可以修改linux的系统设置：
+
 在 /etc/security/limits.conf 加入：
 
 ```bash
@@ -183,7 +184,7 @@ vm.max_map_count=262144
 
 然后执行：
 ```bash
-sysctl -p
+sudo sysctl -p
 ```
 
 # 其他学习资料
