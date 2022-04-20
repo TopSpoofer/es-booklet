@@ -139,7 +139,7 @@ function clean_all()
 
 function set_system_config()
 {
-    echo 'echo "\nvm.max_map_count=262144" >> /etc/sysctl.conf' >> add_sysctl.sh
+    echo 'echo -e "\nvm.max_map_count=262144" >> /etc/sysctl.conf' >> add_sysctl.sh
     echo 'sysctl -p' >> add_sysctl.sh
     chmod a+x add_sysctl.sh
 
