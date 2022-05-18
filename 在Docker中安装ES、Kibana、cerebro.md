@@ -16,7 +16,7 @@
 # 安装docker-compose
 使用 Docker-compose 可以通过一个配置文件来管理多个Docker 容器，在配置文件中，所有的容器通过 services 来定义，然后使用 docker-compose 脚本来启动，停止和重启应用，和应用中的服务以及所有依赖服务的容器，非常适合组合使用多个容器进行开发的场景。
 
-本次我们将使用 docker-compose 2 来管理我们的容器。点击这里下载 linux 平台的 [docker-compose](https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64)。如果下载速度很慢的话，我在这里为你做了一个 linux 的[备份](https://gitee.com/dgl/es-booklet/blob/master/resources/docker-compose-linux-x86_64)。更详细的安装文档请参考[官方文档](https://docs.docker.com/compose/install/)，下面是 linux 下的安装方式。
+本次我们将使用 docker-compose 2 来管理我们的容器。点击这里下载 linux 平台的 [docker-compose](https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64)。如果下载速度很慢的话，我在这里为你做了一个 linux 的[备份](./resources/docker-compose-linux-x86_64)。更详细的安装文档请参考[官方文档](https://docs.docker.com/compose/install/)，下面是 linux 下的安装方式。
 
 ``` bash
 # 假设你已经下载文件到本地了
@@ -113,7 +113,7 @@ docker-compose down -v
 # 安装 Elasticsearch、Kibana、cerebro
 好了在准备后一切之后，我们可以准备安装 Elasticsearch 7.13.0、Kibana 7.13.0、cerebro 0.94。
 
-点击[这里](https://gitee.com/dgl/es-booklet/blob/master/shells/docker-compose.yaml)下载 docker-compose.yaml。将文件保存为 docker-compose.yaml 后，进入这个文件的目录，执行以下指令即可：
+点击[这里](./shells/docker-compose.yaml)下载 docker-compose.yaml。将文件保存为 docker-compose.yaml 后，进入这个文件的目录，执行以下指令即可：
 
 ```
 docker-compose up
